@@ -1,0 +1,1 @@
+# sonar-dotnet-v10.0
