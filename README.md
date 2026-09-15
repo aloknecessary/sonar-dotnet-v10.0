@@ -21,7 +21,7 @@ reuse this image as a **golden CI utility image**.
 ## 🔧 What's Included
 
 - **.NET SDK 10.0 (GA, stable)**
-- **SonarScanner for .NET** (`dotnet-sonarscanner`)
+- **SonarScanner for .NET 11.3.0** (`dotnet-sonarscanner`)
 - Non-root default user (`sonar`, UID 1001)
 - Official Microsoft Ubuntu-based image
 - Multi-architecture support
@@ -46,6 +46,14 @@ reuse this image as a **golden CI utility image**.
   - `linux/arm64`
 
 ---
+
+## Image Tags
+
+| Image tag | .NET SDK | SonarScanner for .NET |
+| --- | --- | --- |
+| `6.2.0` | 10.0 | 6.2.0 |
+| `11.3.0` | 10.0 | 11.3.0 |
+| `latest` | 10.0 | 11.3.0 |
 
 ## 🚀 Usage
 

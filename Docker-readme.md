@@ -11,7 +11,7 @@ to run SonarQube or SonarCloud analysis on .NET projects.
 ## 🔧 What's Included
 
 - .NET SDK **10.0 (stable, GA)**
-- SonarScanner for .NET `6.2.0` (dotnet-sonarscanner)
+- SonarScanner for .NET `11.3.0` (dotnet-sonarscanner)
 - Non-root default user (`sonar`, UID 1001)
 - Ubuntu-based official Microsoft image
 - Multi-architecture support (amd64, arm64)
@@ -36,6 +36,14 @@ to run SonarQube or SonarCloud analysis on .NET projects.
 Built using Docker Buildx and published as a single multi-platform manifest.
 
 ---
+
+## Image Tags
+
+| Image tag | .NET SDK | SonarScanner for .NET |
+| --- | --- | --- |
+| `6.2.0` | 10.0 | 6.2.0 |
+| `11.3.0` | 10.0 | 11.3.0 |
+| `latest` | 10.0 | 11.3.0 |
 
 ## 🚀 Usage
 

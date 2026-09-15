@@ -1,7 +1,7 @@
 # --- Build Stage: Install SonarScanner CLI for .NET ---
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS builder
 
-ARG SONAR_SCANNER_VERSION=6.2.0
+ARG SONAR_SCANNER_VERSION=11.3.0
 
 WORKDIR /opt
 
