@@ -24,5 +24,10 @@ WORKDIR /workspace
 # Copy the installed Sonar tools
 COPY --from=builder /opt/sonar /opt/sonar
 
+# Run analysis without root privileges by default
+RUN useradd -u 1001 -m sonar && \
+    install -d -o sonar -g sonar /workspace
+USER sonar
+
 # Default entrypoint
-CMD ["dotnet", "sonarscanner", "--help"]
+CMD ["dotnet", "sonarscanner"]

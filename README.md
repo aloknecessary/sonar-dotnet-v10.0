@@ -22,6 +22,7 @@ reuse this image as a **golden CI utility image**.
 
 - **.NET SDK 10.0 (GA, stable)**
 - **SonarScanner for .NET** (`dotnet-sonarscanner`)
+- Non-root default user (`sonar`, UID 1001)
 - Official Microsoft Ubuntu-based image
 - Multi-architecture support
 
@@ -32,10 +33,10 @@ reuse this image as a **golden CI utility image**.
 ## 📦 Image Information
 
 - **Docker Hub**:  
-  https://hub.docker.com/r/aloknecessary/sonar-dotnet-v10.0
+  [Docker Hub](https://hub.docker.com/r/aloknecessary/sonar-dotnet-v10.0)
 
 - **Source Repository**:  
-  https://github.com/aloknecessary/sonar-dotnet-v10.0
+  [GitHub](https://github.com/aloknecessary/sonar-dotnet-v10.0)
 
 - **Base Image**:  
   `mcr.microsoft.com/dotnet/sdk:10.0`
@@ -54,7 +55,7 @@ reuse this image as a **golden CI utility image**.
 docker run --rm \
   -v "$(pwd):/workspace" \
   aloknecessary/sonar-dotnet-v10.0:latest \
-  dotnet sonarscanner --help
+  dotnet sonarscanner
 ```
 ---
 ### 2️⃣ GitHub Actions Example
@@ -89,7 +90,7 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Run SonarScanner using custom image
         uses: docker://aloknecessary/sonar-dotnet-v10.0:latest
@@ -109,5 +110,26 @@ jobs:
           args: >
             dotnet sonarscanner end
             /d:sonar.login=${{ secrets.SONAR_TOKEN }}
+```
+
+## Workspace Permissions
+
+The image runs as the non-root `sonar` user (UID 1001). A mounted workspace may have ownership or permission settings that prevent writes.
+
+If your runner has this issue, explicitly run the container as root:
+
+```bash
+docker run --rm --user 0 \
+  -v "$(pwd):/workspace" \
+  -w /workspace \
+  aloknecessary/sonar-dotnet-v10.0:latest
+```
+
+For a GitHub Actions container job:
+
+```yaml
+container:
+  image: aloknecessary/sonar-dotnet-v10.0:latest
+  options: --user 0
 ```
 
